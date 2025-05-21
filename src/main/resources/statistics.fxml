@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controller.StatisticsController"
+      alignment="CENTER" spacing="15" style="-fx-background-color: #f4f4f4;">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Расширенная статистика системы" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <TabPane fx:id="tabPane" prefHeight="600" prefWidth="800">
+        <!-- Вкладка Базовые метрики -->
+        <Tab text="Базовые показатели">
+            <content>
+                <VBox spacing="15">
+                    <PieChart fx:id="basicMetricsPieChart" title="Распределение пользователей по активности" prefHeight="300" prefWidth="600"/>
+                    <LineChart fx:id="transactionVolumeTrendChart" prefHeight="300" prefWidth="600">
+                        <xAxis>
+                            <CategoryAxis label="Месяц"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Общий объем (в валюте)"/>
+                        </yAxis>
+                    </LineChart>
+                </VBox>
+            </content>
+        </Tab>
+
+        <!-- Вкладка Распределение ролей пользователей -->
+        <Tab text="Распределение ролей пользователей">
+            <content>
+                <VBox spacing="15">
+                    <PieChart fx:id="userRoleDistributionChart" title="Распределение ролей" prefHeight="300" prefWidth="600"/>
+                    <BarChart fx:id="userActivityBarChart" prefHeight="300" prefWidth="600">
+                        <xAxis>
+                            <CategoryAxis label="Роль"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Количество транзакций"/>
+                        </yAxis>
+                    </BarChart>
+                </VBox>
+            </content>
+        </Tab>
+
+        <!-- Вкладка Роли пользователей -->
+        <Tab text="Роли пользователей">
+            <content>
+                <VBox spacing="15">
+                    <PieChart fx:id="accountTypePieChart" title="Распределение типов счетов" prefHeight="300" prefWidth="600"/>
+                    <ScatterChart fx:id="assetPriceScatterChart" prefHeight="300" prefWidth="600">
+                        <xAxis>
+                            <CategoryAxis label="Актив"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Цена"/>
+                        </yAxis>
+                    </ScatterChart>
+                </VBox>
+            </content>
+        </Tab>
+
+        <!-- Вкладка Транзакции -->
+        <Tab text="Транзакции">
+            <content>
+                <VBox spacing="15">
+                    <LineChart fx:id="transactionTrendChart" prefHeight="300" prefWidth="600">
+                        <xAxis>
+                            <CategoryAxis label="Месяц"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Количество"/>
+                        </yAxis>
+                    </LineChart>
+                    <StackedBarChart fx:id="transactionTypeVolumeChart" prefHeight="300" prefWidth="600">
+                        <xAxis>
+                            <CategoryAxis label="Тип транзакции"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Объем"/>
+                        </yAxis>
+                    </StackedBarChart>
+                </VBox>
+            </content>
+        </Tab>
+
+        <!-- Вкладка Комиссии -->
+        <Tab text="Комиссии">
+            <content>
+                <VBox spacing="15">
+                    <StackedBarChart fx:id="commissionAmountChart" prefHeight="300" prefWidth="600">
+                        <xAxis>
+                            <CategoryAxis label="Тип комиссии"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Сумма"/>
+                        </yAxis>
+                    </StackedBarChart>
+                    <AreaChart fx:id="commissionTrendChart" prefHeight="300" prefWidth="600">
+                        <xAxis>
+                            <CategoryAxis label="Дата"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Количество активных комиссий"/>
+                        </yAxis>
+                    </AreaChart>
+                </VBox>
+            </content>
+        </Tab>
+
+        <!-- Вкладка Уведомления -->
+        <Tab text="Уведомления">
+            <content>
+                <VBox spacing="15">
+                    <AreaChart fx:id="notificationTrendChart" prefHeight="300" prefWidth="600">
+                        <xAxis>
+                            <CategoryAxis label="День"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Количество"/>
+                        </yAxis>
+                    </AreaChart>
+                    <BarChart fx:id="unreadNotificationBarChart" prefHeight="300" prefWidth="600">
+                        <xAxis>
+                            <CategoryAxis label="Статус"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Количество"/>
+                        </yAxis>
+                    </BarChart>
+                </VBox>
+            </content>
+        </Tab>
+
+        <!-- Вкладка Активы -->
+        <Tab text="Активы">
+            <content>
+                <VBox spacing="15">
+                    <PieChart fx:id="assetTypeDistributionChart" title="Распределение типов активов" prefHeight="300" prefWidth="600"/>
+                    <ScatterChart fx:id="assetPriceTrendChart" prefHeight="300" prefWidth="600">
+                        <xAxis>
+                            <CategoryAxis label="Актив"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Цена"/>
+                        </yAxis>
+                    </ScatterChart>
+                </VBox>
+            </content>
+        </Tab>
+    </TabPane>
+
+    <!-- Кнопки для экспорта -->
+    <Button fx:id="exportChartsButton" text="Экспортировать графики (PNG)" onAction="#exportCharts"
+            style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;"/>
+    <Button fx:id="exportReportButton" text="Экспортировать отчет (PDF)" onAction="#exportReport"
+            style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px;"/>
+    <Button fx:id="exportDataButton" text="Экспортировать данные (TXT)" onAction="#exportData"
+            style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-size: 14px;"/>
+
+    <!-- Область для сообщений -->
+    <TextArea fx:id="statusArea" editable="false" prefHeight="100" wrapText="true" style="-fx-font-size: 12px;"/>
+</VBox>

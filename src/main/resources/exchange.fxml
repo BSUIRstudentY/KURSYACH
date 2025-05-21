@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controller.ExchangeController"
+      alignment="CENTER" spacing="15" style="-fx-background-color: #f5f7fa;">
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+        <content>
+            <VBox spacing="15" alignment="CENTER">
+                <Label text="Обмен валюты" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #555;"/>
+                <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                    <Label text="Исходный счет:" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <ChoiceBox fx:id="fromAccountBox" style="-fx-pref-width: 300; -fx-background-color: #ffffff; -fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 3, 0, 0, 1);"/>
+                    <Label text="Валюта:" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <ChoiceBox fx:id="fromCurrencyBox" style="-fx-pref-width: 300; -fx-background-color: #ffffff; -fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 3, 0, 0, 1);"/>
+                    <Label text="Сумма:" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <TextField fx:id="amountField" promptText="Введите сумму" onKeyReleased="#calculateConvertedAmount" style="-fx-pref-width: 300; -fx-background-color: #ffffff; -fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 3, 0, 0, 1);"/>
+                </VBox>
+                <Label text="→" style="-fx-font-size: 24px; -fx-text-fill: #888;"/>
+                <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                    <Label text="Счет назначения:" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <ChoiceBox fx:id="toAccountBox" style="-fx-pref-width: 300; -fx-background-color: #ffffff; -fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 3, 0, 0, 1);"/>
+                    <Label text="Валюта:" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <ChoiceBox fx:id="toCurrencyBox" style="-fx-pref-width: 300; -fx-background-color: #ffffff; -fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 3, 0, 0, 1);"/>
+                    <Label text="Сумма:" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <TextField fx:id="convertedAmountField" editable="false" style="-fx-pref-width: 300; -fx-background-color: #ffffff; -fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 3, 0, 0, 1);"/>
+                </VBox>
+                <Button fx:id="exchangeButton" text="Обменять" onAction="#exchangeCurrency" style="-fx-background-color: linear-gradient(to right, #6a11cb, #2575fc); -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-width: 300; -fx-background-radius: 25; -fx-cursor: hand;"/>
+                <Label fx:id="errorLabel" text="" style="-fx-text-fill: #e74c3c; -fx-font-size: 12px;"/>
+            </VBox>
+        </content>
+    </ScrollPane>
+</VBox>

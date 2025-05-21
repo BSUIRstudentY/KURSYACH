@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controller.UserManagementController"
+      alignment="CENTER" spacing="10" style="-fx-background-color: #f4f4f4;">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Управление пользователями" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <TableView fx:id="userTable">
+        <columns>
+            <TableColumn fx:id="userIdColumn" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+            <TableColumn fx:id="firstNameColumn" text="Имя" prefWidth="150"/>
+            <TableColumn fx:id="lastNameColumn" text="Фамилия" prefWidth="150"/>
+            <TableColumn fx:id="roleColumn" text="Роль" prefWidth="100"/>
+            <TableColumn fx:id="kycStatusColumn" text="Статус KYC" prefWidth="150"/>
+        </columns>
+    </TableView>
+    <Button text="Сохранить изменения" onAction="#saveUser" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+</VBox>

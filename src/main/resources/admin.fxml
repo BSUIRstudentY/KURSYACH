@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controller.AdminController"
+            style="-fx-background-color: #f4f4f4;">
+    <top>
+        <Label fx:id="contentLabel" text="Управление пользователями и ценными бумагами" style="-fx-font-size: 16px; -fx-font-weight: bold;"
+               BorderPane.alignment="CENTER"/>
+    </top>
+    <left>
+        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #333; -fx-padding: 10;">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10"/>
+            </padding>
+            <Label text="Меню администратора" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Button text="Управление пользователями" onAction="#openUserManagement" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+            <Button text="Управление комиссиями" onAction="#openCommissionManagement" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+            <Button text="Управление активами" onAction="#openAssetManagement" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+            <Button text="Управление счетами" onAction="#openAccountManagement" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+            <Button text="Статистика" onAction="#openStatistics" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+            <Button text="Рассылка уведомлений" onAction="#openNotificationBroadcast" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+            <Button text="Логи транзакций" onAction="#openTransactionLogs" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+            <Button text="Поддержка" onAction="#openSupport" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+            <Button text="Выход" onAction="#logout" style="-fx-background-color: #F44336; -fx-text-fill: white;"/>
+        </VBox>
+    </left>
+    <center>
+        <!-- Начальное содержимое -->
+        <Label text="Выберите раздел..."/>
+    </center>
+</BorderPane>

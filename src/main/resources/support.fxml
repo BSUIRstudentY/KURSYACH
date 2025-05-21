@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controller.SupportController"
+      alignment="CENTER" spacing="10" style="-fx-background-color: #f4f4f4;">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Техническая поддержка" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <VBox spacing="10">
+        <Label text="Новый вопрос" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        <TextField fx:id="titleField" promptText="Введите заголовок" style="-fx-pref-width: 400;"/>
+        <TextArea fx:id="contentArea" promptText="Введите текст вопроса" style="-fx-pref-height: 100; -fx-pref-width: 400;"/>
+        <Button text="Создать вопрос" onAction="#createQuestion" style="-fx-background-color: #6a11cb; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-width: 400; -fx-background-radius: 5; -fx-cursor: hand;"/>
+    </VBox>
+    <VBox spacing="10">
+        <Label text="История запросов" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+            <content>
+                <ListView fx:id="questionList" style="-fx-pref-height: 150; -fx-pref-width: 400;"/>
+            </content>
+        </ScrollPane>
+    </VBox>
+    <VBox spacing="10">
+        <Label text="Диалог" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+            <content>
+                <ListView fx:id="dialogList" style="-fx-pref-height: 150; -fx-pref-width: 400;"/>
+            </content>
+        </ScrollPane>
+        <TextArea fx:id="replyArea" promptText="Введите ответ..." style="-fx-pref-height: 100; -fx-pref-width: 400;" disable="true"/>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button fx:id="refreshDialogButton" text="Обновить диалог" onAction="#refreshDialog" style="-fx-background-color: #6a11cb; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-width: 150; -fx-background-radius: 5; -fx-cursor: hand;"/>
+            <Button fx:id="sendReplyButton" text="Отправить ответ" onAction="#sendReply" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-width: 150; -fx-background-radius: 5; -fx-cursor: hand;" disable="true"/>
+        </HBox>
+    </VBox>
+</VBox>

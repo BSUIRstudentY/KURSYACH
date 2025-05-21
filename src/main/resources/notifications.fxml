@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controller.NotificationsController"
+      alignment="CENTER" spacing="10" style="-fx-background-color: #f4f4f4;">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Уведомления" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+        <content>
+            <ListView fx:id="notificationList" style="-fx-pref-height: 400; -fx-pref-width: 400;"/>
+        </content>
+    </ScrollPane>
+    <Button text="Отметить все как прочитанные" onAction="#markAllAsRead" style="-fx-background-color: #6a11cb; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-width: 400; -fx-background-radius: 5; -fx-cursor: hand;"/>
+</VBox>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controller.NotificationBroadcastController"
+      alignment="CENTER" spacing="15" style="-fx-background-color: #f4f4f4;">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Рассылка уведомлений всем пользователям" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <TextArea fx:id="messageTextArea" promptText="Введите текст уведомления..." wrapText="true" prefHeight="100" prefWidth="400"/>
+    <Button fx:id="sendButton" text="Отправить уведомление" onAction="#sendNotification"
+            style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;"/>
+    <Label fx:id="statusLabel" text="" style="-fx-font-size: 12px; -fx-text-fill: #888;"/>
+</VBox>
