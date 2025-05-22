@@ -27,13 +27,13 @@ CREATE TABLE `account` (
   `account_number` varchar(50) NOT NULL,
   `balances` json NOT NULL,
   `created_at` datetime(6) NOT NULL,
-  `user_id` int NOT NULL,
+  `user_id` int DEFAULT NULL,
   `name` varchar(50) NOT NULL,
   `account_type` enum('ETF','АКЦИИ','ВАЛЮТНЫЙ','ОБЛИГАЦИИ','ТРЕЙДИНГ','ФЬЮЧЕРСЫ') NOT NULL,
   PRIMARY KEY (`account_id`),
   KEY `FK7m8ru44m93ukyb61dfxw0apf6` (`user_id`),
   CONSTRAINT `FK7m8ru44m93ukyb61dfxw0apf6` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (3,'ACC-1747500697576','{\"BYN\": 20000.0, \"RUB\": 8680.378, \"USD\": 3225211.4775, \"EURO\": 3325.0}','2025-05-17 19:51:37.620082',1,'ФЬЮЧИ','ФЬЮЧЕРСЫ'),(4,'ACC-1747501440648','{\"BYN\": 1625.0, \"RUB\": 362000.0, \"USD\": 667.6, \"EURO\": 8.55}','2025-05-17 20:04:00.686495',1,'Акционный счёт','АКЦИИ'),(5,'ACC-1747506733643','{\"BYN\": 0.0, \"EUR\": 0.0, \"RUB\": 0.0, \"USD\": 175.0}','2025-05-17 21:32:13.679120',1,'ETF','ETF'),(6,'ACC-1747506752909','{\"BYN\": 0.0, \"EUR\": 0.0, \"RUB\": 45250.0, \"USD\": 0.0}','2025-05-17 21:32:32.919912',1,'no','ВАЛЮТНЫЙ'),(8,'781820b5-eb0f-4bd0-b7ed-fc0f61a84f3e','{\"BYN\": 0.0, \"RUB\": 0.0, \"USD\": 0.0, \"EURO\": 0.0}','2025-05-19 19:24:10.071685',4,'Default Account','ВАЛЮТНЫЙ');
+INSERT INTO `account` VALUES (3,'ACC-1747500697576','{\"BYN\": 20000.0, \"RUB\": 8680.378, \"USD\": 3215207.4775, \"EURO\": 8075.0}','2025-05-17 19:51:37.620082',1,'ФЬЮЧИ','ФЬЮЧЕРСЫ'),(4,'ACC-1747501440648','{\"BYN\": 1625.0, \"RUB\": 362000.0, \"USD\": 667.6, \"EURO\": 8.55}','2025-05-17 20:04:00.686495',1,'Акционный счёт','АКЦИИ'),(5,'ACC-1747506733643','{\"BYN\": 0.0, \"EUR\": 0.0, \"RUB\": 0.0, \"USD\": 175.0}','2025-05-17 21:32:13.679120',1,'ETF','ETF'),(6,'ACC-1747506752909','{\"BYN\": 0.0, \"EUR\": 0.0, \"RUB\": 45250.0, \"USD\": 0.0, \"EURO\": 4750.0}','2025-05-17 21:32:32.919912',NULL,'no','ВАЛЮТНЫЙ'),(8,'781820b5-eb0f-4bd0-b7ed-fc0f61a84f3e','{\"BYN\": 0.0, \"RUB\": 0.0, \"USD\": 0.0, \"EURO\": 0.0}','2025-05-19 19:24:10.071685',4,'Default Account','ВАЛЮТНЫЙ'),(9,'ACC-1747951316689','{\"BYN\": 0.0, \"RUB\": 0.0, \"USD\": 0.0, \"EURO\": 0.0}','2025-05-23 01:01:56.718947',NULL,'БАЗОВЫЙ','ВАЛЮТНЫЙ'),(10,'ACC-1747953856871','{\"BYN\": 0.0, \"RUB\": 0.0, \"USD\": 0.0, \"EURO\": 0.0}','2025-05-23 01:44:16.904494',NULL,'GOU','ВАЛЮТНЫЙ');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-22 19:35:27
+-- Dump completed on 2025-05-23  2:44:32
