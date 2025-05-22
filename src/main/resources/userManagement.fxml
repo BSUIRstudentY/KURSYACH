@@ -20,7 +20,7 @@
             <TableColumn fx:id="firstNameColumn" text="Имя" prefWidth="150"/>
             <TableColumn fx:id="lastNameColumn" text="Фамилия" prefWidth="150"/>
             <TableColumn fx:id="roleColumn" text="Роль" prefWidth="100"/>
-            <TableColumn fx:id="kycStatusColumn" text="Статус KYC" prefWidth="150"/>
+
         </columns>
     </TableView>
     <Button text="Сохранить изменения" onAction="#saveUser" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>

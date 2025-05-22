@@ -49,8 +49,7 @@ public class ProfileController {
     @FXML
     private TextField roleField;
 
-    @FXML
-    private TextField kycStatusField;
+
 
     @FXML
     private Button saveButton;
@@ -94,7 +93,7 @@ public class ProfileController {
         lastNameField.setText(currentUser.getLastName());
         emailField.setText(currentUser.getEmail());
         roleField.setText(currentUser.getRole().toString());
-        kycStatusField.setText(currentUser.getKycStatus().toString());
+
     }
 
     @FXML

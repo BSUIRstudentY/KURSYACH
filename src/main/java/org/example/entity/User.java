@@ -41,18 +41,14 @@ public class User {
     @Column(nullable = false, columnDefinition = "JSON")
     private String portfolio;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private KYCStatus kycStatus;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Account> accounts;
 
     public enum Role {
         USER, ADMIN
     }
 
-    public enum KYCStatus {
-        ОДОБРЕН, НА_ПРОВЕРКЕ, ОТКЛОНЁН
-    }
+
 }

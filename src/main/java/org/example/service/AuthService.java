@@ -43,7 +43,7 @@ public class AuthService {
                 .password(passwordEncoder.encode(password))
                 .role(role)
                 .portfolio("{}")
-                .kycStatus(User.KYCStatus.НА_ПРОВЕРКЕ)
+
                 .registrationDate(LocalDateTime.now())
                 .accounts(new ArrayList<>())
                 .build();

@@ -19,7 +19,7 @@ public class Account {
     private Integer accountId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "userId")
     private User user;
 
     @Column(nullable = false, length = 50)

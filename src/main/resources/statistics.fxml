@@ -16,8 +16,7 @@
 <?import javafx.scene.control.TextArea?>
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.controller.StatisticsController"
-      alignment="CENTER" spacing="15" style="-fx-background-color: #f4f4f4;">
+      alignment="CENTER" spacing="15" style="-fx-background-color: #f4f4f4" fx:controller="org.example.controller.StatisticsController">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
@@ -166,9 +165,11 @@
         </Tab>
     </TabPane>
 
-    <!-- Кнопки для экспорта -->
+    <!-- Кнопки для экспорта, теперь ограничены текущей вкладкой -->
     <Button fx:id="exportChartsButton" text="Экспортировать графики (PNG)" onAction="#exportCharts"
             style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;"/>
+
+
     <Button fx:id="exportReportButton" text="Экспортировать отчет (PDF)" onAction="#exportReport"
             style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px;"/>
     <Button fx:id="exportDataButton" text="Экспортировать данные (TXT)" onAction="#exportData"

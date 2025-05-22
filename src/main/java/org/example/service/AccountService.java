@@ -5,9 +5,7 @@ import org.example.entity.User;
 import org.example.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallbackWithoutResult;
-import org.springframework.transaction.support.TransactionTemplate;
+import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
@@ -19,9 +17,6 @@ public class AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
-
-    @Autowired
-    private TransactionTemplate transactionTemplate;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -35,41 +30,57 @@ public class AccountService {
                 account.setAccountType(Account.AccountType.ВАЛЮТНЫЙ);
             }
             account.setCreatedAt(LocalDateTime.now());
-            transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-                @Override
-                protected void doInTransactionWithoutResult(TransactionStatus status) {
-                    accountRepository.save(account);
-                }
-            });
+
+            accountRepository.save(account);
+            System.out.println("Account created with ID: " + account.getAccountId());
         } catch (Exception e) {
+            System.err.println("Failed to create account: " + e.getMessage());
             throw new RuntimeException("Failed to create account: " + e.getMessage(), e);
         }
     }
 
     public List<Account> getAccountsByUser(User user) {
         try {
-            return accountRepository.findByUser(user);
+            List<Account> accounts = accountRepository.findByUser(user);
+            System.out.println("Fetched accounts for user " + user.getUserId() + ": " + accounts.size());
+            return accounts;
         } catch (Exception e) {
-            throw new RuntimeException("Failed to fetch accounts for user: " + user.getUserId(), e);
+            System.err.println("Failed to fetch accounts for user " + user.getUserId() + ": " + e.getMessage());
+            throw new RuntimeException("Failed to fetch accounts: " + e.getMessage(), e);
         }
     }
 
+    @Transactional
     public void deleteAccount(Account account) {
+        System.out.println("DeleteAccount method called for account ID: " + account.getAccountId());
         try {
-            System.out.println("Attempting to delete account with ID: " + account.getAccountId());
-            transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-                @Override
-                protected void doInTransactionWithoutResult(TransactionStatus status) {
-                    Account managedAccount = entityManager.merge(account);
-                    accountRepository.deleteById(managedAccount.getAccountId());
-                    entityManager.flush();
-                    entityManager.clear();
-                    System.out.println("Account with ID " + managedAccount.getAccountId() + " deleted successfully.");
+            System.out.println("Attempting to remove account with ID: " + account.getAccountId() + " from user's accounts list.");
+            // Находим управляемую сущность
+            Account managedAccount = entityManager.find(Account.class, account.getAccountId());
+            if (managedAccount != null) {
+                User user = managedAccount.getUser();
+                if (user != null) {
+                    // Удаляем счет из списка accounts у пользователя
+                    user.getAccounts().remove(managedAccount);
+                    System.out.println("Account with ID " + account.getAccountId() + " removed from user's accounts list.");
                 }
-            });
+                // Разрываем связь, устанавливая user в null
+                managedAccount.setUser(null);
+                System.out.println("Account with ID " + account.getAccountId() + " user set to null in database.");
+                // Сохраняем изменения
+                entityManager.merge(managedAccount);
+                // Принудительно записываем изменения в базу данных
+                entityManager.flush();
+                System.out.println("Changes flushed to database for account ID: " + account.getAccountId());
+            } else {
+                System.out.println("Account with ID " + account.getAccountId() + " not found.");
+            }
+            // Очищаем кэш Hibernate
+            entityManager.clear();
+            System.out.println("EntityManager cache cleared.");
         } catch (Exception e) {
-            System.err.println("Failed to delete account with ID " + account.getAccountId() + ": " + e.getMessage());
-            throw new RuntimeException("Failed to delete account: " + e.getMessage(), e);
+            System.err.println("Failed to remove account with ID " + account.getAccountId() + " from user's accounts: " + e.getMessage());
+            throw new RuntimeException("Failed to remove account from user's accounts: " + e.getMessage(), e);
         }
     }
 }

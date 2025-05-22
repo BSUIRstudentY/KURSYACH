@@ -21,6 +21,7 @@ public class KURSYACHApplication extends Application {
         springContext = SpringApplication.run(KURSYACHApplication.class);
         springContext.getBean(AccountsController.class);
         springContext.getBean(AccountService.class);
+        AdminController.setSpringContext(springContext);
     }
 
     @Override

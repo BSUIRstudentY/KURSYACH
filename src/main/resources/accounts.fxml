@@ -12,7 +12,7 @@
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
-    <Label text="Добро пожаловать, Максим!" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+    <Label text="" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
     <Label text="Ваши счета" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #555;"/>
     <Label fx:id="errorLabel" text="" style="-fx-text-fill: #e74c3c; -fx-font-size: 14px;"/>
     <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: transparent;">
@@ -20,6 +20,10 @@
             <VBox fx:id="accountsContainer" spacing="15"/>
         </content>
     </ScrollPane>
-    <Button fx:id="addAccountButton" text="Добавить счет" onAction="#addAccount"
-            style="-fx-background-color: linear-gradient(to right, #6a11cb, #2575fc); -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 25;"/>
+    <HBox alignment="CENTER" spacing="10" VBox.vgrow="NEVER">
+        <Button fx:id="addAccountButton" text="Добавить счет" onAction="#addAccount"
+                style="-fx-background-color: linear-gradient(to right, #6a11cb, #2575fc); -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 25;"/>
+        <Button fx:id="deleteAccountButton" text="Удалить счет" onAction="#deleteAccount"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 25;"/>
+    </HBox>
 </VBox>

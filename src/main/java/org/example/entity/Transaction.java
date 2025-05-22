@@ -35,7 +35,7 @@ public class Transaction {
     @Column(nullable = false, length = 3)
     private String currency;
 
-    @Column(length = 3)
+    @Column(length = 4)
     private String toCurrency;
 
     @Column

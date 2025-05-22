@@ -33,8 +33,7 @@ public class UserManagementController {
     @FXML
     private TableColumn<User, User.Role> roleColumn;
 
-    @FXML
-    private TableColumn<User, User.KYCStatus> kycStatusColumn;
+
 
     @Autowired
     private UserService userService;
@@ -49,7 +48,7 @@ public class UserManagementController {
         firstNameColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getFirstName()));
         lastNameColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getLastName()));
         roleColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getRole()));
-        kycStatusColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getKycStatus()));
+
 
         // Делаем поля редактируемыми с указанием StringConverter
         emailColumn.setCellFactory(column -> new javafx.scene.control.cell.TextFieldTableCell<>(new DefaultStringConverter()));
@@ -76,11 +75,7 @@ public class UserManagementController {
             user.setRole(event.getNewValue());
         });
 
-        kycStatusColumn.setCellFactory(column -> new javafx.scene.control.cell.ChoiceBoxTableCell<>(User.KYCStatus.values()));
-        kycStatusColumn.setOnEditCommit(event -> {
-            User user = event.getRowValue();
-            user.setKycStatus(event.getNewValue());
-        });
+
 
         userTable.setEditable(true);
         userTable.setItems(FXCollections.observableArrayList(userRepository.findAll()));
