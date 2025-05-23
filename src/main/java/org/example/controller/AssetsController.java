@@ -13,6 +13,7 @@ import org.example.entity.Commission;
 import org.example.entity.CommissionType;
 import org.example.entity.Transaction;
 import org.example.entity.User;
+import org.example.repository.AccountRepository;
 import org.example.repository.CommissionRepository;
 import org.example.repository.UserRepository;
 import org.example.service.AssetService;
@@ -65,6 +66,9 @@ public class AssetsController {
 
     @Autowired
     private CommissionRepository commissionRepository;
+
+    @Autowired
+    private AccountRepository accountRepository;
 
     private User currentUser;
     private String currentMode = "АКЦИИ"; // Default mode
@@ -164,9 +168,9 @@ public class AssetsController {
                 "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);");
 
         VBox accountInfo = new VBox(5);
-        Label accountNameLabel = new Label(currentUser != null && !currentUser.getAccounts().isEmpty() ? currentUser.getAccounts().get(0).getName() : "Нет счета");
+        Label accountNameLabel = new Label(currentUser != null && !accountRepository.findByUser(currentUser).isEmpty() ? accountRepository.findByUser(currentUser).get(0).getName() : "Нет счета");
         accountNameLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333;");
-        Label accountNumberLabel = new Label(currentUser != null && !currentUser.getAccounts().isEmpty() ? currentUser.getAccounts().get(0).getAccountNumber() : "Нет счета");
+        Label accountNumberLabel = new Label(currentUser != null && !accountRepository.findByUser(currentUser).isEmpty() ? accountRepository.findByUser(currentUser).get(0).getAccountNumber() : "Нет счета");
         accountNumberLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #555;");
         accountInfo.getChildren().addAll(accountNameLabel, accountNumberLabel);
 
@@ -202,11 +206,7 @@ public class AssetsController {
         actionButton.setStyle("-fx-background-color: #6B46C1; -fx-text-fill: white; -fx-padding: 5 15; -fx-border-radius: 5; -fx-background-radius: 5;");
         actionButton.setOnAction(e -> System.out.println("Button clicked for " + currentMode));
 
-        mainBox.getChildren().addAll(accountInfo, currencySummary, actionButton);
-        HBox.setHgrow(accountInfo, javafx.scene.layout.Priority.ALWAYS);
-        HBox.setHgrow(currencySummary, javafx.scene.layout.Priority.ALWAYS);
 
-        assetsContainer.getChildren().add(mainBox);
 
         for (Asset asset : filteredAssets) {
             HBox assetBox = createAssetBox(asset);
@@ -268,7 +268,7 @@ public class AssetsController {
             return;
         }
 
-        List<Account> accounts = currentUser.getAccounts();
+        List<Account> accounts = accountRepository.findByUser(currentUser);
         if (accounts == null || accounts.isEmpty()) {
             showAlert("Ошибка", "У вас нет доступных счетов для покупки.");
             return;

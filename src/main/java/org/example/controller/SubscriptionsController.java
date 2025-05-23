@@ -117,7 +117,7 @@ public class SubscriptionsController {
         }
 
         String selectedAccountNumber = accountChoiceBox.getValue();
-        Account selectedAccount = userAccounts.stream()
+        Account selectedAccount = accountRepository.findByUser(currentUser).stream()
                 .filter(account -> account.getAccountNumber().equals(selectedAccountNumber))
                 .findFirst()
                 .orElse(null);

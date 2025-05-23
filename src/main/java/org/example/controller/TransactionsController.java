@@ -15,6 +15,7 @@ import org.example.entity.Commission;
 import org.example.entity.CommissionType;
 import org.example.entity.Transaction;
 import org.example.entity.User;
+import org.example.repository.AccountRepository;
 import org.example.repository.CommissionRepository;
 import org.example.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,9 @@ public class TransactionsController {
     @Autowired
     private CommissionRepository commissionRepository;
 
+    @Autowired
+    private AccountRepository accountRepository;
+
     private User currentUser;
     private boolean isDepositMode = true;
 
@@ -91,9 +95,9 @@ public class TransactionsController {
         ));
         methodBox.setValue("Банковская карта");
 
-        if (currentUser != null && !currentUser.getAccounts().isEmpty()) {
-            accountBox.setItems(FXCollections.observableArrayList(currentUser.getAccounts()));
-            accountBox.setValue(currentUser.getAccounts().get(0));
+        if (currentUser != null && !accountRepository.findByUser(currentUser).isEmpty()) {
+            accountBox.setItems(FXCollections.observableArrayList(accountRepository.findByUser(currentUser)));
+            accountBox.setValue(accountRepository.findByUser(currentUser).get(0));
         }
 
         addHoverAnimation(accountBox);
@@ -151,7 +155,7 @@ public class TransactionsController {
         try {
             errorLabel.setText("");
 
-            if (currentUser == null || currentUser.getAccounts().isEmpty()) {
+            if (currentUser == null || accountRepository.findByUser(currentUser).isEmpty()) {
                 errorLabel.setText("У пользователя нет счетов.");
                 return;
             }
@@ -254,9 +258,9 @@ public class TransactionsController {
 
     public void setCurrentUser(User user) {
         this.currentUser = user;
-        if (currentUser != null && !currentUser.getAccounts().isEmpty()) {
-            accountBox.setItems(FXCollections.observableArrayList(currentUser.getAccounts()));
-            accountBox.setValue(currentUser.getAccounts().get(0));
+        if (currentUser != null && !accountRepository.findByUser(currentUser).isEmpty()) {
+            accountBox.setItems(FXCollections.observableArrayList(accountRepository.findByUser(currentUser)));
+            accountBox.setValue(accountRepository.findByUser(currentUser).get(0));
         }
     }
 

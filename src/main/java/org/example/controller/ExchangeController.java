@@ -12,6 +12,7 @@ import org.example.entity.Commission;
 import org.example.entity.CommissionType;
 import org.example.entity.ExchangeRate;
 import org.example.entity.User;
+import org.example.repository.AccountRepository;
 import org.example.repository.CommissionRepository;
 import org.example.service.ExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,8 @@ public class ExchangeController {
     private CommissionRepository commissionRepository;
 
     private User currentUser;
+    @Autowired
+    private AccountRepository accountRepository;
 
     @FXML
     public void initialize() {
@@ -87,11 +90,11 @@ public class ExchangeController {
             public Account fromString(String string) { return null; }
         });
 
-        if (currentUser != null && !currentUser.getAccounts().isEmpty()) {
-            fromAccountBox.setItems(FXCollections.observableArrayList(currentUser.getAccounts()));
-            toAccountBox.setItems(FXCollections.observableArrayList(currentUser.getAccounts()));
-            fromAccountBox.setValue(currentUser.getAccounts().get(0));
-            toAccountBox.setValue(currentUser.getAccounts().get(0));
+        if (currentUser != null && !accountRepository.findByUser(currentUser).isEmpty()) {
+            fromAccountBox.setItems(FXCollections.observableArrayList(accountRepository.findByUser(currentUser)));
+            toAccountBox.setItems(FXCollections.observableArrayList(accountRepository.findByUser(currentUser)));
+            fromAccountBox.setValue(accountRepository.findByUser(currentUser).get(0));
+            toAccountBox.setValue(accountRepository.findByUser(currentUser).get(0));
         }
 
         fromCurrencyBox.valueProperty().addListener((obs, oldVal, newVal) -> updateConvertedAmount());
@@ -153,7 +156,7 @@ public class ExchangeController {
     @FXML
     public void exchangeCurrency() {
         try {
-            if (currentUser == null || currentUser.getAccounts().isEmpty()) {
+            if (currentUser == null || accountRepository.findByUser(currentUser).isEmpty()) {
                 errorLabel.setText("У пользователя нет счетов.");
                 return;
             }
@@ -244,11 +247,11 @@ public class ExchangeController {
 
     public void setCurrentUser(User user) {
         this.currentUser = user;
-        if (currentUser != null && !currentUser.getAccounts().isEmpty()) {
-            fromAccountBox.setItems(FXCollections.observableArrayList(currentUser.getAccounts()));
-            toAccountBox.setItems(FXCollections.observableArrayList(currentUser.getAccounts()));
-            fromAccountBox.setValue(currentUser.getAccounts().get(0));
-            toAccountBox.setValue(currentUser.getAccounts().get(0));
+        if (currentUser != null && !accountRepository.findByUser(currentUser).isEmpty()) {
+            fromAccountBox.setItems(FXCollections.observableArrayList(accountRepository.findByUser(currentUser)));
+            toAccountBox.setItems(FXCollections.observableArrayList(accountRepository.findByUser(currentUser)));
+            fromAccountBox.setValue(accountRepository.findByUser(currentUser).get(0));
+            toAccountBox.setValue(accountRepository.findByUser(currentUser).get(0));
             updateConvertedAmount();
         }
     }
