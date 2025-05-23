@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `asset`;
 CREATE TABLE `asset` (
   `asset_id` int NOT NULL AUTO_INCREMENT,
   `asset_type` enum('ETF','АКЦИИ','ОБЛИГАЦИИ','ТРЕЙДИНГ','ФЬЮЧЕРСЫ') NOT NULL,
-  `currency` varchar(3) NOT NULL,
+  `currency` varchar(4) NOT NULL,
   `current_price` decimal(10,2) NOT NULL,
   `name` varchar(100) NOT NULL,
   `ticker` varchar(20) NOT NULL,
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-23  2:44:32
+-- Dump completed on 2025-05-23 23:28:19

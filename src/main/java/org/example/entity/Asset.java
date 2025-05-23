@@ -29,7 +29,7 @@ public class Asset {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal currentPrice;
 
-    @Column(nullable = false, length = 3)
+    @Column(nullable = false, length = 4)
     private String currency;
 
     public enum AssetType {

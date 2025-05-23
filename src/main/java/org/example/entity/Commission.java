@@ -24,7 +24,7 @@ public class Commission {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal amount;
 
-    @Column(nullable = false, length = 3)
+    @Column(nullable = false, length = 4)
     private String currency;
 
     @Column(nullable = false)

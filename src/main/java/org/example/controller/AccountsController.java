@@ -106,7 +106,7 @@ public class AccountsController {
                 Map<String, Double> balances = new HashMap<>();
                 balances.put("USD", 0.0);
                 balances.put("RUB", 0.0);
-                balances.put("EURO", 0.0);
+                balances.put("EUR", 0.0);
                 balances.put("BYN", 0.0);
 
                 Account account;
@@ -289,7 +289,7 @@ public class AccountsController {
         VBox balancesBox = new VBox(5);
         addBalanceLabel(balancesBox, "USD", balances.getOrDefault("USD", 0.0));
         addBalanceLabel(balancesBox, "RUB", balances.getOrDefault("RUB", 0.0));
-        addBalanceLabel(balancesBox, "EURO", balances.getOrDefault("EURO", 0.0));
+        addBalanceLabel(balancesBox, "EUR", balances.getOrDefault("EUR", 0.0));
         addBalanceLabel(balancesBox, "BYN", balances.getOrDefault("BYN", 0.0));
 
         Label typeLabel = new Label(account.getAccountType().name());

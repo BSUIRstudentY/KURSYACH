@@ -26,7 +26,7 @@ CREATE TABLE `commission` (
   `commission_id` int NOT NULL AUTO_INCREMENT,
   `amount` decimal(10,2) NOT NULL,
   `commission_date` datetime(6) NOT NULL,
-  `currency` varchar(3) NOT NULL,
+  `currency` varchar(4) NOT NULL,
   `commission_type` enum('ETF','АКЦИИ','ОБЛИГАЦИИ','ОБМЕН','ПОКУПКА','ПОПОЛНЕНИЕ','ПРОДАЖА','СНЯТИЕ','ТРЕЙДИНГ','ФЬЮЧЕРСЫ') NOT NULL,
   `is_active` bit(1) NOT NULL,
   `percentage` decimal(5,2) DEFAULT NULL,
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-23  2:44:32
+-- Dump completed on 2025-05-23 23:28:20

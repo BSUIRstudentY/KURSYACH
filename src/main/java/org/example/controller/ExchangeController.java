@@ -67,8 +67,8 @@ public class ExchangeController {
 
     @FXML
     public void initialize() {
-        fromCurrencyBox.setItems(FXCollections.observableArrayList("USD", "RUB", "EURO", "BYN"));
-        toCurrencyBox.setItems(FXCollections.observableArrayList("USD", "RUB", "EURO", "BYN"));
+        fromCurrencyBox.setItems(FXCollections.observableArrayList("USD", "RUB", "EUR", "BYN"));
+        toCurrencyBox.setItems(FXCollections.observableArrayList("USD", "RUB", "EUR", "BYN"));
         fromCurrencyBox.setValue("RUB");
         toCurrencyBox.setValue("USD");
 

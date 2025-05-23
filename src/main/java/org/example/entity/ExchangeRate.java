@@ -27,6 +27,6 @@ public class ExchangeRate {
     private BigDecimal rate;
 
     public enum Currency {
-        USD, RUB, BYN, EURO
+        USD, RUB, BYN, EUR
     }
 }
